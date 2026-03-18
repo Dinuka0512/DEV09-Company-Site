@@ -3,129 +3,13 @@
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion"
 import { ArrowRight, Code2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { useEffect, useState, useRef } from "react"
-
-// Enhanced particle system with varied shapes and glow
-function ParticleBackground() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-
-    const ctx = canvas.getContext("2d")
-    if (!ctx) return
-
-    let animationFrameId: number
-    let particles: Array<{
-      x: number
-      y: number
-      size: number
-      speedX: number
-      speedY: number
-      opacity: number
-      color: string
-      shape: "circle" | "square" | "triangle"
-      rotation: number
-    }> = []
-
-    const resize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-      initParticles()
-    }
-
-    const initParticles = () => {
-      const numberOfParticles = Math.min(80, Math.floor((canvas.width * canvas.height) / 10000))
-      particles = []
-      for (let i = 0; i < numberOfParticles; i++) {
-        // Random shape
-        const shapeType = Math.random()
-        let shape: "circle" | "square" | "triangle" = "circle"
-        if (shapeType < 0.4) shape = "circle"
-        else if (shapeType < 0.7) shape = "square"
-        else shape = "triangle"
-
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          size: Math.random() * 4 + 2, // size between 2 and 6
-          speedX: (Math.random() - 0.5) * 0.15,
-          speedY: (Math.random() - 0.5) * 0.15,
-          opacity: Math.random() * 0.6 + 0.2,
-          color: `rgba(${Math.random() > 0.6 ? "255, 100, 100" : "100, 150, 255"}, ${Math.random() * 0.5 + 0.3})`,
-          shape,
-          rotation: Math.random() * Math.PI * 2,
-        })
-      }
-    }
-
-    const drawParticles = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-      // Enable shadow for glow effect
-      ctx.shadowColor = "rgba(255, 255, 255, 0.5)"
-      ctx.shadowBlur = 8
-
-      particles.forEach((p) => {
-        ctx.save()
-        ctx.translate(p.x, p.y)
-        ctx.rotate(p.rotation)
-        ctx.globalAlpha = p.opacity
-        ctx.fillStyle = p.color
-        ctx.shadowColor = p.color.replace(/[^,]+(?=\))/, "0.8") // use same color for glow
-        ctx.shadowBlur = 10
-
-        if (p.shape === "circle") {
-          ctx.beginPath()
-          ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2)
-          ctx.fill()
-        } else if (p.shape === "square") {
-          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size)
-        } else if (p.shape === "triangle") {
-          ctx.beginPath()
-          ctx.moveTo(0, -p.size / 1.5)
-          ctx.lineTo(p.size / 1.5, p.size / 1.5)
-          ctx.lineTo(-p.size / 1.5, p.size / 1.5)
-          ctx.closePath()
-          ctx.fill()
-        }
-
-        ctx.restore()
-
-        // Update position
-        p.x += p.speedX
-        p.y += p.speedY
-        p.rotation += 0.002 // slight rotation for triangles
-
-        // Wrap around edges
-        if (p.x < 0) p.x = canvas.width
-        if (p.x > canvas.width) p.x = 0
-        if (p.y < 0) p.y = canvas.height
-        if (p.y > canvas.height) p.y = 0
-      })
-
-      animationFrameId = requestAnimationFrame(drawParticles)
-    }
-
-    resize()
-    window.addEventListener("resize", resize)
-    drawParticles()
-
-    return () => {
-      window.removeEventListener("resize", resize)
-      cancelAnimationFrame(animationFrameId)
-    }
-  }, [])
-
-  return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-0" />
-}
+import { useEffect, useState } from "react"
 
 export function HeroSection() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
 
-  // Smooth spring physics for parallax
-  const springConfig = { damping: 20, stiffness: 150, mass: 0.5 }
+  // Gentle spring physics for subtle parallax
+  const springConfig = { damping: 40, stiffness: 80, mass: 0.8 }
 
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
@@ -133,22 +17,23 @@ export function HeroSection() {
   const springX = useSpring(mouseX, springConfig)
   const springY = useSpring(mouseY, springConfig)
 
-  // Parallax transforms
-  const backgroundX = useTransform(springX, [-0.5, 0.5], [-20, 20])
-  const backgroundY = useTransform(springY, [-0.5, 0.5], [-20, 20])
+  // Very subtle movement ranges
+  const bgX = useTransform(springX, [-0.5, 0.5], [-8, 8])
+  const bgY = useTransform(springY, [-0.5, 0.5], [-8, 8])
 
-  const foregroundX = useTransform(springX, [-0.5, 0.5], [10, -10])
-  const foregroundY = useTransform(springY, [-0.5, 0.5], [10, -10])
+  const orbX = useTransform(springX, [-0.5, 0.5], [-15, 15])
+  const orbY = useTransform(springY, [-0.5, 0.5], [-15, 15])
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      // Normalize mouse position to range [-0.5, 0.5]
+      // Normalize to [-1, 1] range
       const x = (e.clientX / window.innerWidth - 0.5) * 2
       const y = (e.clientY / window.innerHeight - 0.5) * 2
       mouseX.set(x)
       mouseY.set(y)
       setMousePos({ x: e.clientX, y: e.clientY })
     }
+
     window.addEventListener("mousemove", handleMouseMove)
     return () => window.removeEventListener("mousemove", handleMouseMove)
   }, [mouseX, mouseY])
@@ -160,175 +45,160 @@ export function HeroSection() {
     }
   }
 
+  // Title for staggered animation
+  const title = "Transform Your Ideas Into Powerful Software"
+  const titleWords = title.split(" ")
+
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background"
     >
-      {/* Particle background with varied shapes */}
-      <ParticleBackground />
-
-      {/* Animated Background with Parallax */}
-      <motion.div
-        className="absolute inset-0 bg-background"
+      {/* Subtle mouse-following glow */}
+      <div
+        className="fixed inset-0 pointer-events-none z-10"
         style={{
-          x: backgroundX,
-          y: backgroundY,
+          background: `radial-gradient(circle at ${mousePos.x}px ${mousePos.y}px, rgba(255,255,255,0.04) 0%, transparent 45%)`,
         }}
-      >
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/20 via-background to-background" />
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.5, 0.3, 0.5],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
+      />
 
-        {/* Rotating geometric shape (low opacity) */}
+      {/* Breathing background gradient with parallax */}
+      <motion.div
+        className="absolute inset-0"
+        style={{ x: bgX, y: bgY }}
+      >
         <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-10"
+          className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-primary/5"
           animate={{
-            rotate: 360,
+            scale: [1, 1.03, 1],
+            opacity: [0.65, 0.85, 0.65],
           }}
           transition={{
-            duration: 60,
+            duration: 16,
             repeat: Infinity,
-            ease: "linear",
+            repeatType: "reverse",
+            ease: "easeInOut",
           }}
-        >
-          <div className="w-full h-full border border-primary/20 rounded-[40%] rotate-45" />
-          <div className="absolute inset-0 w-full h-full border border-primary/10 rounded-[30%] -rotate-12" />
-        </motion.div>
+        />
       </motion.div>
 
-      {/* Grid Pattern with its own parallax */}
+      {/* Soft floating orbs with parallax */}
       <motion.div
-        className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]"
-        style={{
-          x: foregroundX,
-          y: foregroundY,
-        }}
-      />
+        className="absolute inset-0 pointer-events-none"
+        style={{ x: orbX, y: orbY }}
+      >
+        <motion.div
+          className="absolute top-[18%] left-[12%] w-[480px] h-[480px] bg-gradient-to-br from-primary/18 to-transparent rounded-full blur-3xl"
+          animate={{
+            x: [0, 35, 0],
+            y: [0, -25, 0],
+            scale: [1, 1.08, 1],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            repeatType: "mirror",
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-[22%] right-[10%] w-[580px] h-[580px] bg-gradient-to-tl from-primary/12 via-indigo-400/8 to-transparent rounded-full blur-3xl"
+          animate={{
+            x: [0, -40, 0],
+            y: [0, 35, 0],
+            scale: [1, 1.09, 1],
+          }}
+          transition={{
+            duration: 26,
+            repeat: Infinity,
+            repeatType: "mirror",
+            ease: "easeInOut",
+            delay: 6,
+          }}
+        />
+      </motion.div>
 
-      {/* Occasional scanning line */}
-      <motion.div
-        className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary/20 to-transparent blur-sm"
-        animate={{
-          y: ["-10%", "110%"],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "linear",
-          delay: 2,
-        }}
-      />
-
+      {/* Main content – fully centered */}
       <div className="container mx-auto px-6 relative z-20">
         <div className="max-w-4xl mx-auto text-center">
+          {/* Staggered word animation */}
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-balance"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              visible: { transition: { staggerChildren: 0.11 } },
+            }}
+            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight text-balance"
           >
-            <span className="text-foreground">Transform Your Ideas Into </span>
-            <motion.span
-              className="text-primary inline-block bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent bg-[length:200%_auto]"
-              animate={{
-                backgroundPosition: ["0% center", "200% center"],
-              }}
-              transition={{
-                duration: 8,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            >
-              Powerful
-            </motion.span>
-            <span className="text-foreground"> Software</span>
+            {titleWords.map((word, i) => (
+              <motion.span
+                key={i}
+                className="inline-block"
+                variants={{
+                  hidden: { opacity: 0, y: 38 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+              >
+                {word === "Powerful" ? (
+                  <span className="text-primary">{word}</span>
+                ) : (
+                  word
+                )}{" "}
+              </motion.span>
+            ))}
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto text-pretty"
+            transition={{ duration: 0.7, delay: 0.9 }}
+            className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed"
           >
-            We craft cutting-edge digital solutions that drive business growth.
+            We craft cutting-edge digital solutions that drive business growth.  
             From web applications to enterprise software, we bring your vision to life.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            transition={{ duration: 0.6, delay: 1.1 }}
+            className="flex flex-col sm:flex-row gap-5 justify-center items-center"
           >
             <Button
               size="lg"
               onClick={() => scrollToSection("#contact")}
-              className="bg-primary text-primary-foreground hover:bg-primary/90 group relative overflow-hidden"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 group text-base px-8 py-6 min-w-[200px]"
             >
-              <span className="relative z-10">Start Your Project</span>
-              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform relative z-10" />
-              <motion.div
-                className="absolute inset-0 bg-white/20"
-                initial={{ x: "-100%" }}
-                whileHover={{ x: "100%" }}
-                transition={{ duration: 0.5 }}
-              />
+              Start Your Project
+              <ArrowRight className="ml-2.5 w-5 h-5 group-hover:translate-x-1.5 transition-transform duration-300" />
             </Button>
+
             <Button
               size="lg"
               variant="outline"
               onClick={() => scrollToSection("#projects")}
-              className="border-border text-foreground hover:bg-secondary group relative overflow-hidden"
+              className="border-2 border-primary/40 text-base px-8 py-6 hover:bg-primary/5 hover:border-primary/60 transition-all duration-300 min-w-[200px]"
             >
-              <Code2 className="mr-2 w-4 h-4 relative z-10" />
-              <span className="relative z-10">View Our Work</span>
-              <motion.div
-                className="absolute inset-0 bg-primary/10"
-                initial={{ scale: 0 }}
-                whileHover={{ scale: 1 }}
-                transition={{ duration: 0.2 }}
-              />
+              <Code2 className="mr-2.5 w-5 h-5" />
+              View Our Work
             </Button>
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll indicator – bottom center */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        transition={{ delay: 1.6, duration: 0.8 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20"
       >
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-6 h-10 rounded-full border-2 border-muted-foreground flex items-start justify-center p-2"
+          animate={{ y: [0, 12, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="w-7 h-12 rounded-full border-2 border-muted-foreground/50 flex items-start justify-center pt-2"
         >
-          <motion.div className="w-1.5 h-1.5 rounded-full bg-primary" />
+          <motion.div className="w-1.5 h-3 rounded-full bg-primary/80" />
         </motion.div>
       </motion.div>
     </section>
