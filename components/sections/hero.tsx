@@ -3,8 +3,19 @@
 import { motion } from "framer-motion"
 import { ArrowRight, Code2, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useState, useEffect } from "react"
 
 export function HeroSection() {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({ x: e.clientX, y: e.clientY })
+    }
+    window.addEventListener("mousemove", handleMouseMove)
+    return () => window.removeEventListener("mousemove", handleMouseMove)
+  }, [])
+
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href)
     if (element) {
@@ -49,7 +60,15 @@ export function HeroSection() {
       {/* Grid Pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      {/* Mouse-following spotlight */}
+      <div
+        className="fixed inset-0 pointer-events-none z-10"
+        style={{
+          background: `radial-gradient(circle at ${mousePos.x}px ${mousePos.y}px, rgba(255,255,255,0.06) 0%, transparent 60%)`,
+        }}
+      />
+
+      <div className="container mx-auto px-6 relative z-20">
         <div className="max-w-4xl mx-auto text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -97,32 +116,7 @@ export function HeroSection() {
             </Button>
           </motion.div>
 
-          {/* Stats
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="grid grid-cols-3 gap-8 mt-20 pt-10 border-t border-border"
-          >
-            {[
-              { value: "150+", label: "Projects Delivered" },
-              { value: "50+", label: "Happy Clients" },
-              { value: "10+", label: "Years Experience" },
-            ].map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                className="text-center"
-              >
-                <div className="text-2xl md:text-4xl font-bold text-primary mb-1">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </motion.div>
-            ))}
-          </motion.div> */}
+          {/* Stats section is commented out */}
         </div>
       </div>
 
