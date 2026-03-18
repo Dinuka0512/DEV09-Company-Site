@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, useInView } from "framer-motion"
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 import { ExternalLink, Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -86,11 +86,21 @@ export function ProjectsSection() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const [activeFilter, setActiveFilter] = useState("All")
+  const [showAll, setShowAll] = useState(false)
+
+  // Reset to first 6 cards whenever the filter changes
+  useEffect(() => {
+    setShowAll(false)
+  }, [activeFilter])
 
   const filteredProjects =
     activeFilter === "All"
       ? projects
       : projects.filter((project) => project.category === activeFilter)
+
+  const displayedProjects = showAll
+    ? filteredProjects
+    : filteredProjects.slice(0, 6)
 
   return (
     <section id="projects" className="py-24 bg-background relative">
@@ -137,9 +147,9 @@ export function ProjectsSection() {
           ))}
         </motion.div>
 
-        {/* Projects Grid */}
+        {/* Projects Grid – Only 6 shown initially */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, index) => (
+          {displayedProjects.map((project, index) => (
             <motion.div
               key={project.title}
               initial={{ opacity: 0, y: 30 }}
@@ -156,7 +166,6 @@ export function ProjectsSection() {
                     className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 grayscale group-hover:grayscale-0"
                   />
                   
-                  {/* Enhanced hover overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
                   <div className="absolute top-4 left-4">
@@ -205,6 +214,27 @@ export function ProjectsSection() {
             </motion.div>
           ))}
         </div>
+
+        {/* Expand Button – Shows only when there are more than 6 cards */}
+        {!showAll && filteredProjects.length > 6 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex justify-center mt-12"
+          >
+            <Button
+              onClick={() => setShowAll(true)}
+              size="lg"
+              className="px-10 py-6 text-base font-semibold rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300"
+            >
+              Show More Projects 
+              <span className="ml-2 text-sm opacity-75">
+                (+{filteredProjects.length - 6} remaining)
+              </span>
+            </Button>
+          </motion.div>
+        )}
       </div>
     </section>
   )
