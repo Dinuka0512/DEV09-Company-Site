@@ -54,6 +54,30 @@ const projects = [
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop",
     tags: ["Angular", "NestJS", "GraphQL", "Azure"],
   },
+  {
+    title: "SecurePay",
+    category: "Fintech",
+    description:
+      "Advanced payment processing platform with AI fraud prevention, instant transfers, and global currency support.",
+    image: "https://images.unsplash.com/photo-1563013544-824ae1b273d2?w=600&h=400&fit=crop",
+    tags: ["Next.js", "Node.js", "Stripe", "TensorFlow"],
+  },
+  {
+    title: "WellnessTrack",
+    category: "Healthcare",
+    description:
+      "AI-powered wellness platform for remote patient monitoring, personalized health plans, and telemedicine integration.",
+    image: "https://images.unsplash.com/photo-1559757148-5e995136c7b2?w=600&h=400&fit=crop",
+    tags: ["React Native", "Firebase", "Machine Learning", "IoT"],
+  },
+  {
+    title: "LearnForge",
+    category: "Education",
+    description:
+      "Innovative learning management system with AI-powered tutoring, interactive simulations, and global student collaboration.",
+    image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&h=400&fit=crop",
+    tags: ["Vue.js", "Flask", "WebSockets", "AI"],
+  },
 ]
 
 const categories = ["All", "Fintech", "Healthcare", "Education", "Logistics", "E-commerce", "Productivity"]
