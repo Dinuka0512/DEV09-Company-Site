@@ -6,7 +6,7 @@ import { Github, Facebook, Instagram, Linkedin } from "lucide-react"
 
 const team = [
   {
-    name: "Alex Chen",
+    name: "Dinuka Lakmal",
     role: "CEO & Founder",
     description:
       "Visionary leader with 15+ years in tech. Passionate about building innovative solutions that transform businesses.",
