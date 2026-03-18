@@ -58,7 +58,7 @@ const team = [
     },
   },
   {
-    name: "David Kim",
+    name: "Sachindu Charas",
     role: "DevOps Engineer",
     description:
       "Infrastructure specialist ensuring 99.99% uptime. Expert in CI/CD, Kubernetes, and cloud platforms.",
