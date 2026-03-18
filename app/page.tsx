@@ -9,6 +9,7 @@ import { ProjectsSection } from "@/components/sections/projects"
 import { TeamSection } from "@/components/sections/team"
 import { ClientsSection } from "@/components/sections/clients"
 import { ContactSection } from "@/components/sections/contact"
+import { LanguagesSection } from "@/components/sections/language"
 import { Footer } from "@/components/footer"
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
     <main className="min-h-screen bg-background">
       <Navbar />
       <HeroSection />
+      <LanguagesSection/>
       <AboutSection />
       <ServicesSection />
       <WhyUsSection />
