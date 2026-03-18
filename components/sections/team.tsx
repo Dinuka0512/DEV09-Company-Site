@@ -7,7 +7,7 @@ import { Github, Facebook, Instagram, Linkedin } from "lucide-react"
 const team = [
   {
     name: "Dinuka Lakmal",
-    role: "CEO & Founder",
+    role: "Cleaner",
     description:
       "Visionary leader with 15+ years in tech. Passionate about building innovative solutions that transform businesses.",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
