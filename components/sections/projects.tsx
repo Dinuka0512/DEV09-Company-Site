@@ -148,48 +148,53 @@ export function ProjectsSection() {
               layout
               className="group"
             >
-              <div className="relative rounded-2xl overflow-hidden bg-card border border-border hover:border-primary/50 transition-all duration-300 h-full">
-                <div className="relative h-48 overflow-hidden">
+              <div className="relative rounded-3xl overflow-hidden bg-card border border-border hover:border-primary/50 shadow-md hover:shadow-2xl group-hover:-translate-y-1 transition-all duration-300 h-full">
+                <div className="relative h-56 overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 grayscale group-hover:grayscale-0"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
+                  {/* Enhanced hover overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
                   <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 text-xs font-medium bg-primary/90 text-primary-foreground rounded-full">
+                    <span className="px-3 py-1 text-xs font-medium bg-primary/90 text-primary-foreground rounded-full backdrop-blur-md">
                       {project.category}
                     </span>
                   </div>
-                  <div className="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  
+                  <div className="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
                     <Button
                       size="icon"
                       variant="secondary"
-                      className="w-9 h-9 rounded-full bg-background/80 hover:bg-background"
+                      className="w-9 h-9 rounded-full bg-background/90 hover:bg-background backdrop-blur-md border border-white/20"
                     >
                       <ExternalLink className="w-4 h-4" />
                     </Button>
                     <Button
                       size="icon"
                       variant="secondary"
-                      className="w-9 h-9 rounded-full bg-background/80 hover:bg-background"
+                      className="w-9 h-9 rounded-full bg-background/90 hover:bg-background backdrop-blur-md border border-white/20"
                     >
                       <Github className="w-4 h-4" />
                     </Button>
                   </div>
                 </div>
+                
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                  <p className="text-sm text-muted-foreground mb-5 line-clamp-3">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-2 py-1 text-xs bg-secondary text-secondary-foreground rounded"
+                        className="px-3 py-1 text-xs bg-secondary/80 text-secondary-foreground rounded-full font-medium"
                       >
                         {tag}
                       </span>
