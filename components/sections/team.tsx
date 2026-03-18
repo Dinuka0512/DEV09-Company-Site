@@ -38,7 +38,7 @@ const team = [
     social: { github: "#", facebook: "#", instagram: "#", linkedin: "#" },
   },
   {
-    name: "Sachindu Charas",
+    name: "Sachindu Charas II",
     role: "DevOps Engineer",
     description:
       "Infrastructure specialist ensuring 99.99% uptime. Expert in CI/CD, Kubernetes, and cloud platforms.",
