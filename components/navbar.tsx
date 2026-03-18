@@ -4,7 +4,8 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import logo from "../asets/LogoPNG/dev09Logo.png"
+import logo from "../asets/LogoPNG/dev09BgBlackLogo.png"
+import Image from "next/image"
 
 const navItems = [
   { name: "Home", href: "#home" },
@@ -73,7 +74,13 @@ export function Navbar() {
             whileHover={{ scale: 1.05 }}
           >
             {/* Here Need to add the Logo */}
-            
+            <Image
+              src={logo}
+              alt="DEV09 Logo"
+              width={120}    // display width (adjust to match your logo's aspect ratio)
+              height={40}    // display height
+              priority
+            />
           </motion.a>
 
           {/* Desktop Navigation */}
