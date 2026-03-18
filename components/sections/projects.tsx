@@ -215,7 +215,7 @@ export function ProjectsSection() {
           ))}
         </div>
 
-        {/* Expand Button – Shows only when there are more than 6 cards */}
+        {/* Show More Button – visible when there are more than 6 projects and not showing all */}
         {!showAll && filteredProjects.length > 6 && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -232,6 +232,25 @@ export function ProjectsSection() {
               <span className="ml-2 text-sm opacity-75">
                 (+{filteredProjects.length - 6} remaining)
               </span>
+            </Button>
+          </motion.div>
+        )}
+
+        {/* Show Less Button – visible when showing all and there are more than 6 projects */}
+        {showAll && filteredProjects.length > 6 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex justify-center mt-12"
+          >
+            <Button
+              onClick={() => setShowAll(false)}
+              size="lg"
+              variant="outline"
+              className="px-10 py-6 text-base font-semibold rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300"
+            >
+              Show Less
             </Button>
           </motion.div>
         )}
