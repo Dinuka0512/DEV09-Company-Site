@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import logo from "../asets/LogoPNG/dev09Logo.png"
 
 const navItems = [
   { name: "Home", href: "#home" },
@@ -71,8 +72,8 @@ export function Navbar() {
             className="text-2xl font-bold"
             whileHover={{ scale: 1.05 }}
           >
-            <span className="text-primary">DEV</span>
-            <span className="text-foreground">09</span>
+            {/* Here Need to add the Logo */}
+            
           </motion.a>
 
           {/* Desktop Navigation */}
