@@ -83,6 +83,46 @@ const team = [
       linkedin: "#",
     },
   },
+  // New members
+  {
+    name: "Alex Chen",
+    role: "Marketing Director",
+    description:
+      "Strategic marketer with a knack for storytelling. Drives brand growth and market expansion through data-driven campaigns.",
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop&crop=face",
+    social: {
+      github: "#",
+      facebook: "#",
+      instagram: "#",
+      linkedin: "#",
+    },
+  },
+  {
+    name: "Maria Garcia",
+    role: "Customer Success Manager",
+    description:
+      "Dedicated to client satisfaction and long-term partnerships. Ensures every customer achieves their goals with our solutions.",
+    image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=300&h=300&fit=crop&crop=face",
+    social: {
+      github: "#",
+      facebook: "#",
+      instagram: "#",
+      linkedin: "#",
+    },
+  },
+  {
+    name: "David Kim",
+    role: "Data Scientist",
+    description:
+      "AI/ML expert turning complex data into actionable insights. Develops predictive models that drive business intelligence.",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300&h=300&fit=crop&crop=face",
+    social: {
+      github: "#",
+      facebook: "#",
+      instagram: "#",
+      linkedin: "#",
+    },
+  },
 ]
 
 export function TeamSection() {
