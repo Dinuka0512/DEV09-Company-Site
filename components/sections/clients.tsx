@@ -1,7 +1,8 @@
 "use client"
 
-import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
+import { motion, useAnimationControls } from "framer-motion"
+import { useEffect, useRef } from "react"
+import { useInView } from "framer-motion" // still used for title entrance
 
 const clients = [
   { name: "TechCorp", logo: "TC" },
@@ -15,8 +16,46 @@ const clients = [
 ]
 
 export function ClientsSection() {
-  const ref = useRef(null)
+  const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+
+  const controls = useAnimationControls()
+  const marqueeRef = useRef<HTMLDivElement>(null)
+
+  // Infinite slow scroll right → left
+  useEffect(() => {
+    const animateMarquee = async () => {
+      if (!marqueeRef.current) return
+
+      // Get full width of one set of logos
+      const width = marqueeRef.current.scrollWidth / 2
+
+      await controls.start({
+        x: -width,
+        transition: {
+          duration: 60,           // ~60s for full cycle – slow & elegant
+          ease: "linear",
+          repeat: Infinity,
+        },
+      })
+    }
+
+    animateMarquee()
+  }, [controls])
+
+  // Pause on hover
+  const handleHoverStart = () => controls.stop()
+  const handleHoverEnd = () => {
+    // Restart from current position
+    controls.start({
+      x: marqueeRef.current ? - (marqueeRef.current.scrollWidth / 2) : 0,
+      transition: {
+        duration: 60,
+        ease: "linear",
+        repeat: Infinity,
+      },
+    })
+  }
 
   return (
     <section className="py-24 bg-background relative">
@@ -24,7 +63,7 @@ export function ClientsSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
           <span className="text-primary text-sm font-semibold tracking-wider uppercase">
@@ -38,47 +77,53 @@ export function ClientsSection() {
           </p>
         </motion.div>
 
-        {/* Infinite Scroll Container */}
-        <div className="relative overflow-hidden">
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
+        {/* Infinite Marquee */}
+        <div
+          className="relative overflow-hidden"
+          onMouseEnter={handleHoverStart}
+          onMouseLeave={handleHoverEnd}
+        >
+          {/* Fade edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex gap-8 animate-scroll"
+            ref={marqueeRef}
+            animate={controls}
+            className="flex gap-8 md:gap-12 whitespace-nowrap"
+            initial={{ x: 0 }}
           >
             {/* First set */}
-            {clients.map((client, index) => (
-              <motion.div
-                key={`first-${client.name}`}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
+            {clients.map((client) => (
+              <div
+                key={client.name}
                 className="flex-shrink-0"
               >
-                <div className="w-48 h-24 rounded-xl bg-card border border-border flex items-center justify-center hover:border-primary/50 transition-all duration-300 group">
+                <div className="w-48 h-24 rounded-xl bg-card border border-border flex items-center justify-center hover:border-primary/50 hover:shadow-md transition-all duration-300 group">
                   <div className="text-center">
                     <span className="text-3xl font-bold text-muted-foreground group-hover:text-primary transition-colors">
                       {client.logo}
                     </span>
-                    <p className="text-xs text-muted-foreground mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <p className="text-xs text-muted-foreground mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
                       {client.name}
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
-            {/* Second set for infinite scroll */}
+
+            {/* Duplicate set for seamless loop */}
             {clients.map((client) => (
-              <div key={`second-${client.name}`} className="flex-shrink-0">
-                <div className="w-48 h-24 rounded-xl bg-card border border-border flex items-center justify-center hover:border-primary/50 transition-all duration-300 group">
+              <div
+                key={`dup-${client.name}`}
+                className="flex-shrink-0"
+              >
+                <div className="w-48 h-24 rounded-xl bg-card border border-border flex items-center justify-center hover:border-primary/50 hover:shadow-md transition-all duration-300 group">
                   <div className="text-center">
                     <span className="text-3xl font-bold text-muted-foreground group-hover:text-primary transition-colors">
                       {client.logo}
                     </span>
-                    <p className="text-xs text-muted-foreground mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <p className="text-xs text-muted-foreground mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
                       {client.name}
                     </p>
                   </div>
@@ -88,16 +133,16 @@ export function ClientsSection() {
           </motion.div>
         </div>
 
-        {/* Static Grid for Mobile */}
-        <div className="grid grid-cols-2 md:hidden gap-4 mt-8">
-          {clients.slice(0, 4).map((client, index) => (
+        {/* Mobile fallback – static grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:hidden gap-6 mt-12">
+          {clients.map((client, i) => (
             <motion.div
-              key={`mobile-${client.name}`}
+              key={client.name}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
             >
-              <div className="h-20 rounded-xl bg-card border border-border flex items-center justify-center">
+              <div className="h-20 rounded-xl bg-card border border-border flex items-center justify-center shadow-sm">
                 <span className="text-2xl font-bold text-muted-foreground">
                   {client.logo}
                 </span>
@@ -106,28 +151,6 @@ export function ClientsSection() {
           ))}
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes scroll {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-        .animate-scroll {
-          animation: scroll 30s linear infinite;
-        }
-        .animate-scroll:hover {
-          animation-play-state: paused;
-        }
-        @media (max-width: 768px) {
-          .animate-scroll {
-            display: none;
-          }
-        }
-      `}</style>
     </section>
   )
 }
