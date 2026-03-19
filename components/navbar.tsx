@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import logo from "../asets/LogoPNG/dev09BgBlackLogo.png"
+import logo from "../assets/LogoPNG/dev09BgBlackLogo.png"
 import Image from "next/image"
 
 const navItems = [
