@@ -3,62 +3,62 @@
 import { motion } from "framer-motion"
 import { useState, useEffect } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+// ────────────────────────────────────────────────
 
-// Team data
 const team = [
   {
     name: "Dinuka Lakmal",
     role: "CEO & Founder",
-    description: "Visionary leader with 15+ years in tech. Passionate about building innovative solutions that transform businesses.",
-    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1770409646/rq7g6nas7gyyjzbftwh4.jpg",
+    description: "An aspiring tech leader and final-year undergraduate, focused on managing project lifecycles and transforming academic insights into market-ready solutions.",
+    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1773959148/ico_g7rq4z.png",
   },
   {
     name: "Hiruna Fernando",
     role: "Co-Founder",
-    description: "Visionary leader with 15+ years in tech. Passionate about building innovative solutions that transform businesses.",
-    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1770409646/rq7g6nas7gyyjzbftwh4.jpg",
+    description: "Final-year student with a focus on business logic and strategy, dedicated to coordinating team operations and building a strong foundation for our startup.",
+    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1773960844/Gemini_Generated_Image_9pb9w49pb9w49pb9_anshlv.png",
   },
   {
     name: "Sumuditha Janith",
     role: "Full Stack Developer",
-    description: "A strong contributor with great team spirit, building solutions using modern technologies like React, Node.js, and MongoDB.",
+    description: "A developer who thrives on solving complex logic, currently applying university-level software engineering principles to build scalable MERN applications.",
     image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1773953483/WhatsApp_Image_2026-03-20_at_2.20.37_AM_dc9w4j.jpg",
   },
   {
     name: "Dilshan Hesara",
     role: "Full Stack Developer",
-    description: "A strong contributor with great team spirit, building solutions using modern technologies like React, Node.js, and MongoDB.",
-    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1773953483/WhatsApp_Image_2026-03-20_at_2.20.37_AM_dc9w4j.jpg",
+    description: "Focusing on the synergy between frontend and backend, using modern frameworks to create high-performance, data-driven web solutions.",
+    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1773960726/Gemini_Generated_Image_86h6dn86h6dn86h6_uurljm.png",
   },
   {
     name: "Akila Peris",
     role: "Front Developer",
-    description: "A strong contributor with great team spirit, building solutions using modern technologies like React, Node.js, and MongoDB.",
-    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1773953483/WhatsApp_Image_2026-03-20_at_2.20.37_AM_dc9w4j.jpg",
+    description: "Specializes in modern JavaScript and CSS, turning complex requirements into clean, user-friendly interfaces with a focus on responsive design.",
+    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1773959681/unnamed_2_vbffge.jpg",
   },
   {
     name: "Chamindu Chirantha",
     role: "Front Developer",
-    description: "A strong contributor with great team spirit, building solutions using modern technologies like React, Node.js, and MongoDB.",
-    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1773953483/WhatsApp_Image_2026-03-20_at_2.20.37_AM_dc9w4j.jpg",
+    description: "Passionate about the visual side of tech, focusing on creating fast, interactive web experiences through efficient React development.",
+    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1773960613/Gemini_Generated_Image_vmxmlpvmxmlpvmxm_gfsa3h.png",
   },
   {
     name: "Sachindu Sooriya Arachchi",
     role: "BackEnd Developer",
-    description: "A strong contributor with great team spirit, building solutions using modern technologies like React, Node.js, and MongoDB.",
-    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1773953483/WhatsApp_Image_2026-03-20_at_2.20.37_AM_dc9w4j.jpg",
+    description: "A final-year student specializing in server architecture and database management, ensuring the core of our applications is secure and efficient.",
+    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1773959910/Gemini_Generated_Image_e1fu5de1fu5de1fu_jkabqh.png",
   },
   {
     name: "Ayusha Vijerathna",
     role: "UI/UX Designer",
-    description: "A strong contributor with great team spirit, building solutions using modern technologies like React, Node.js, and MongoDB.",
-    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1773953483/WhatsApp_Image_2026-03-20_at_2.20.37_AM_dc9w4j.jpg",
+    description: "Combining research and creativity to design intuitive user journeys, with a focus on modern design systems and user-centered methodology.",
+    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1773960317/Gemini_Generated_Image_1joqnk1joqnk1joq_zbq749.png",
   },
   {
     name: "Vindya Madubashini",
     role: "UI/UX Designer",
-    description: "A strong contributor with great team spirit, building solutions using modern technologies like React, Node.js, and MongoDB.",
-    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1773953483/WhatsApp_Image_2026-03-20_at_2.20.37_AM_dc9w4j.jpg",
+    description: "Focuses on the visual identity of our products, ensuring that every project is not only functional but also aesthetically engaging and usable.",
+    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1773960910/Gemini_Generated_Image_1gtul51gtul51gtu_xize9z.png",
   },
 ]
 
@@ -130,7 +130,7 @@ export function TeamSection() {
   const isMobile = itemsPerView === 1
 
   return (
-    <section className="py-16 sm:py-20 bg-secondary/20 relative overflow-hidden">
+    <section id="team" className="py-16 sm:py-20 bg-secondary/20 relative overflow-hidden">
       {/* Optional decorative lines */}
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent pointer-events-none" />
       <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-border to-transparent pointer-events-none" />
