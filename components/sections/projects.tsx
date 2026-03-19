@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef, useState, useEffect } from "react"
-import { ExternalLink, Github } from "lucide-react"
+import { ExternalLink, Github, ChevronDown, ChevronUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const projects = [
@@ -226,12 +226,11 @@ export function ProjectsSection() {
             <Button
               onClick={() => setShowAll(true)}
               size="lg"
-              className="px-10 py-6 text-base font-semibold rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300"
+              variant="outline"
+              className="px-10 py-6 text-base font-semibold rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:bg-destructive hover:text-destructive-foreground"
             >
-              Show More Projects 
-              <span className="ml-2 text-sm opacity-75">
-                (+{filteredProjects.length - 6} remaining)
-              </span>
+              Show More Projects
+              <ChevronDown className="ml-2 h-4 w-4" />
             </Button>
           </motion.div>
         )}
@@ -248,9 +247,10 @@ export function ProjectsSection() {
               onClick={() => setShowAll(false)}
               size="lg"
               variant="outline"
-              className="px-10 py-6 text-base font-semibold rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300"
+              className="px-10 py-6 text-base font-semibold rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:bg-destructive hover:text-destructive-foreground"
             >
               Show Less
+              <ChevronUp className="ml-2 h-4 w-4" />
             </Button>
           </motion.div>
         )}
