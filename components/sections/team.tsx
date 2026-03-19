@@ -6,80 +6,69 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 
 // Team data
 const team = [
-  // your original team array here (9 members)
-  // ... paste all 9 objects ...
   {
     name: "Dinuka Lakmal",
     role: "CEO & Founder",
-    description: "Visionary leader with 15+ years in tech...",
+    description: "Visionary leader with 15+ years in tech. Passionate about building innovative solutions that transform businesses.",
     image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1770409646/rq7g6nas7gyyjzbftwh4.jpg",
-    social: { github: "#", facebook: "#", instagram: "#", linkedin: "#" },
   },
   {
-    name: "Dinuka Lakmal",
-    role: "CEO & Founder",
-    description: "Visionary leader with 15+ years in tech...",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
-    social: { github: "#", facebook: "#", instagram: "#", linkedin: "#" },
+    name: "Hiruna Fernando",
+    role: "Co-Founder",
+    description: "Visionary leader with 15+ years in tech. Passionate about building innovative solutions that transform businesses.",
+    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1770409646/rq7g6nas7gyyjzbftwh4.jpg",
   },
   {
     name: "Sumuditha Janith",
     role: "Full Stack Developer",
     description: "A strong contributor with great team spirit, building solutions using modern technologies like React, Node.js, and MongoDB.",
     image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1773953483/WhatsApp_Image_2026-03-20_at_2.20.37_AM_dc9w4j.jpg",
-    social: { github: "#", facebook: "#", instagram: "#", linkedin: "#" },
   },
   {
-    name: "Dinuka Lakmal",
-    role: "CEO & Founder",
-    description: "Visionary leader with 15+ years in tech...",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
-    social: { github: "#", facebook: "#", instagram: "#", linkedin: "#" },
+    name: "Dilshan Hesara",
+    role: "Full Stack Developer",
+    description: "A strong contributor with great team spirit, building solutions using modern technologies like React, Node.js, and MongoDB.",
+    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1773953483/WhatsApp_Image_2026-03-20_at_2.20.37_AM_dc9w4j.jpg",
   },
   {
-    name: "Dinuka Lakmal",
-    role: "CEO & Founder",
-    description: "Visionary leader with 15+ years in tech...",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
-    social: { github: "#", facebook: "#", instagram: "#", linkedin: "#" },
+    name: "Akila Peris",
+    role: "Front Developer",
+    description: "A strong contributor with great team spirit, building solutions using modern technologies like React, Node.js, and MongoDB.",
+    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1773953483/WhatsApp_Image_2026-03-20_at_2.20.37_AM_dc9w4j.jpg",
   },
   {
-    name: "Dinuka Lakmal",
-    role: "CEO & Founder",
-    description: "Visionary leader with 15+ years in tech...",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
-    social: { github: "#", facebook: "#", instagram: "#", linkedin: "#" },
+    name: "Chamindu Chirantha",
+    role: "Front Developer",
+    description: "A strong contributor with great team spirit, building solutions using modern technologies like React, Node.js, and MongoDB.",
+    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1773953483/WhatsApp_Image_2026-03-20_at_2.20.37_AM_dc9w4j.jpg",
   },
   {
-    name: "Dinuka Lakmal",
-    role: "CEO & Founder",
-    description: "Visionary leader with 15+ years in tech...",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
-    social: { github: "#", facebook: "#", instagram: "#", linkedin: "#" },
+    name: "Sachindu Sooriya Arachchi",
+    role: "BackEnd Developer",
+    description: "A strong contributor with great team spirit, building solutions using modern technologies like React, Node.js, and MongoDB.",
+    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1773953483/WhatsApp_Image_2026-03-20_at_2.20.37_AM_dc9w4j.jpg",
   },
   {
-    name: "Dinuka Lakmal",
-    role: "CEO & Founder",
-    description: "Visionary leader with 15+ years in tech...",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
-    social: { github: "#", facebook: "#", instagram: "#", linkedin: "#" },
+    name: "Ayusha Vijerathna",
+    role: "UI/UX Designer",
+    description: "A strong contributor with great team spirit, building solutions using modern technologies like React, Node.js, and MongoDB.",
+    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1773953483/WhatsApp_Image_2026-03-20_at_2.20.37_AM_dc9w4j.jpg",
   },
   {
-    name: "Dinuka Lakmal",
-    role: "CEO & Founder",
-    description: "Visionary leader with 15+ years in tech...",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
-    social: { github: "#", facebook: "#", instagram: "#", linkedin: "#" },
-  }
+    name: "Vindya Madubashini",
+    role: "UI/UX Designer",
+    description: "A strong contributor with great team spirit, building solutions using modern technologies like React, Node.js, and MongoDB.",
+    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1773953483/WhatsApp_Image_2026-03-20_at_2.20.37_AM_dc9w4j.jpg",
+  },
 ]
 
 // ────────────────────────────────────────────────
 
 const TeamCard = ({ member }: { member: (typeof team)[number] }) => {
   return (
-    <div className="flex-shrink-0 w-[300px] sm:w-[340px] lg:w-[380px] px-3 md:px-4">
-      <div className="h-full p-6 rounded-2xl bg-card border border-border text-center transition-all duration-400 hover:border-primary/60 hover:shadow-xl hover:shadow-primary/15 hover:-translate-y-2 group">
-        <div className="relative w-28 h-28 mx-auto mb-6 overflow-hidden">
+    <div className="flex-shrink-0 w-[85vw] max-w-[320px] sm:w-[46vw] sm:max-w-[340px] lg:w-[31vw] lg:max-w-[380px] px-2 sm:px-3 lg:px-4">
+      <div className="h-full p-5 sm:p-6 rounded-2xl bg-card border border-border text-center transition-all duration-400 hover:border-primary/60 hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-2 group">
+        <div className="relative w-24 h-24 sm:w-28 sm:h-28 mx-auto mb-5 sm:mb-6 overflow-hidden">
           <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary via-primary/50 to-transparent p-1">
             <div className="w-full h-full rounded-full overflow-hidden bg-card">
               <img
@@ -91,29 +80,15 @@ const TeamCard = ({ member }: { member: (typeof team)[number] }) => {
           </div>
         </div>
 
-        <h3 className="text-xl font-bold text-foreground mb-1">{member.name}</h3>
-        <p className="text-primary font-medium mb-4">{member.role}</p>
-        <p className="text-sm text-muted-foreground leading-relaxed mb-6 line-clamp-3">
+        <h3 className="text-lg sm:text-xl font-bold text-foreground mb-1 truncate">
+          {member.name}
+        </h3>
+        <p className="text-primary font-medium text-sm sm:text-base mb-3 sm:mb-4">
+          {member.role}
+        </p>
+        <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed line-clamp-4 sm:line-clamp-3">
           {member.description}
         </p>
-
-        <div className="flex justify-center gap-4">
-          {["Github", "Facebook", "Instagram", "Linkedin"].map((name, i) => {
-            const Icon = require("lucide-react")[name as keyof typeof import("lucide-react")]
-            return (
-              <a
-                key={i}
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-secondary/70 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
-                aria-label={`${name} profile`}
-              >
-                <Icon className="w-5 h-5" />
-              </a>
-            )
-          })}
-        </div>
       </div>
     </div>
   )
@@ -125,17 +100,21 @@ export function TeamSection() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [itemsPerView, setItemsPerView] = useState(1)
 
-  // Update items per view based on screen size
   useEffect(() => {
-    const updateItems = () => {
-      if (window.innerWidth >= 1024) return setItemsPerView(3)
-      if (window.innerWidth >= 640) return setItemsPerView(2)
-      return setItemsPerView(1)
+    const updateItemsPerView = () => {
+      const width = window.innerWidth
+      if (width >= 1024) {
+        setItemsPerView(3)   // desktop / large laptop
+      } else if (width >= 640) {
+        setItemsPerView(2)   // tablet / small laptop
+      } else {
+        setItemsPerView(1)   // mobile
+      }
     }
 
-    updateItems()
-    window.addEventListener("resize", updateItems)
-    return () => window.removeEventListener("resize", updateItems)
+    updateItemsPerView()
+    window.addEventListener("resize", updateItemsPerView)
+    return () => window.removeEventListener("resize", updateItemsPerView)
   }, [])
 
   const totalSlides = Math.ceil(team.length / itemsPerView)
@@ -148,53 +127,59 @@ export function TeamSection() {
   const prevSlide = () => goToSlide(currentIndex - 1)
   const nextSlide = () => goToSlide(currentIndex + 1)
 
-  return (
-    <section className="py-20 bg-secondary/20 relative overflow-hidden">
-      {/* Decorative lines */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+  const isMobile = itemsPerView === 1
 
-      <div className="container mx-auto px-6">
+  return (
+    <section className="py-16 sm:py-20 bg-secondary/20 relative overflow-hidden">
+      {/* Optional decorative lines */}
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-border to-transparent pointer-events-none" />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto  bg-amber-300 md:mb-16">
-          <span className="text-primary text-sm font-semibold tracking-widest uppercase">
+        <div className="text-center max-w-4xl mx-auto mb-10 sm:mb-14 lg:mb-16">
+          <span className="text-primary text-xs sm:text-sm font-semibold tracking-widest uppercase">
             Our Team
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-5">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-3 sm:mt-4 mb-4 sm:mb-6 leading-tight">
             Meet The <span className="text-primary">Experts</span>
           </h2>
-          <p className="text-muted-foreground text-lg md:text-xl">
+          <p className="text-muted-foreground text-base sm:text-lg lg:text-xl max-w-3xl mx-auto px-2 sm:px-0">
             A passionate group of professionals committed to turning ideas into world-class digital products.
           </p>
         </div>
 
         {/* Carousel */}
         <div className="relative">
-          {/* Arrows */}
-          <button
-            onClick={prevSlide}
-            disabled={currentIndex === 0}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 md:-translate-x-4 z-20 w-12 h-12 rounded-full bg-background/80 backdrop-blur-sm border border-border flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-md"
-            aria-label="Previous slide"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
+          {/* Arrows – hidden on mobile */}
+          {!isMobile && (
+            <>
+              <button
+                onClick={prevSlide}
+                disabled={currentIndex === 0}
+                className="absolute -left-2 sm:-left-4 lg:-left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-background/80 backdrop-blur border border-border flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground disabled:opacity-40 disabled:hover:bg-background/80 transition-all shadow-md"
+                aria-label="Previous slide"
+              >
+                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
 
-          <button
-            onClick={nextSlide}
-            disabled={currentIndex === maxIndex}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 md:translate-x-4 z-20 w-12 h-12 rounded-full bg-background/80 backdrop-blur-sm border border-border flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-md"
-            aria-label="Next slide"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
+              <button
+                onClick={nextSlide}
+                disabled={currentIndex === maxIndex}
+                className="absolute -right-2 sm:-right-4 lg:-right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-background/80 backdrop-blur border border-border flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground disabled:opacity-40 disabled:hover:bg-background/80 transition-all shadow-md"
+                aria-label="Next slide"
+              >
+                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
+            </>
+          )}
 
           {/* Slider content */}
-          <div className="overflow-hidden pt-2">
+          <div className="overflow-hidden">
             <motion.div
               className="flex"
               animate={{ x: `-${currentIndex * 100}%` }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              transition={{ type: "spring", stiffness: 280, damping: 28 }}
             >
               {Array.from({ length: totalSlides }).map((_, slideIdx) => {
                 const start = slideIdx * itemsPerView
@@ -204,8 +189,7 @@ export function TeamSection() {
                 return (
                   <div
                     key={slideIdx}
-                    className="flex min-w-full"
-                    style={{ width: "100%" }}
+                    className="flex min-w-full justify-center gap-4 sm:gap-6 lg:gap-8 px-1 sm:px-2"
                   >
                     {slideMembers.map((member, cardIdx) => (
                       <TeamCard
@@ -219,19 +203,20 @@ export function TeamSection() {
             </motion.div>
           </div>
 
-          {/* Dots – active bright red, inactive dark red */}
+          {/* Dots navigation */}
           {totalSlides > 1 && (
-            <div className="flex justify-center gap-3.5 mt-10 md:mt-12">
+            <div className="flex justify-center gap-3 sm:gap-4 mt-8 sm:mt-10 lg:mt-12">
               {Array.from({ length: totalSlides }).map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => goToSlide(idx)}
                   className={`
-                    w-10 h-1.5 rounded-full transition-all duration-400 ease-in-out cursor-pointer
+                    h-2.5 sm:h-3 rounded-full transition-all duration-400 cursor-pointer
+                    min-w-[2.5rem] sm:min-w-[3rem] lg:min-w-[3.5rem]
                     ${
                       idx === currentIndex
-                        ? "bg-red-600 scale-125 shadow-md shadow-red-500/40 ring-1 ring-red-400/20"
-                        : "bg-red-950/70 hover:bg-red-800/80 hover:scale-110"
+                        ? "bg-red-600 shadow-md shadow-red-500/50"
+                        : "bg-red-950/70 hover:bg-red-800/80 active:bg-red-700"
                     }
                   `}
                   aria-label={`Go to slide ${idx + 1}`}
