@@ -189,7 +189,7 @@ export function TeamSection() {
                 return (
                   <div
                     key={slideIdx}
-                    className="flex min-w-full justify-center gap-4 sm:gap-6 lg:gap-8 px-1 sm:px-2"
+                    className="flex min-w-full justify-center p-2 gap-4 sm:gap-6 lg:gap-8 px-1 sm:px-2"
                   >
                     {slideMembers.map((member, cardIdx) => (
                       <TeamCard
