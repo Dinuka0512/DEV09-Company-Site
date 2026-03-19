@@ -1,9 +1,10 @@
 "use client"
 
-import { motion, useInView, useScroll, useTransform } from "framer-motion"
+import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { Github, Facebook, Instagram, Linkedin } from "lucide-react"
 
+// Team data (same as before)
 const team = [
   {
     name: "Dinuka Lakmal",
@@ -79,93 +80,90 @@ const team = [
   },
 ]
 
-const chunkArray = <T,>(arr: T[], size: number): T[][] => {
-  return Array.from({ length: Math.ceil(arr.length / size) }, (_, i) =>
-    arr.slice(i * size, i * size + size)
+// Individual card component with fade‑in animation
+const TeamCard = ({ member, index }: { member: typeof team[0]; index: number }) => {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-50px" })
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+    >
+      <div className="h-full p-6 rounded-2xl bg-card border border-border text-center transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-2">
+        <div className="relative w-28 h-28 mx-auto mb-6">
+          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-primary/40 p-1">
+            <div className="w-full h-full rounded-full overflow-hidden bg-card">
+              <img
+                src={member.image}
+                alt={member.name}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+            </div>
+          </div>
+        </div>
+
+        <h3 className="text-xl font-bold text-foreground mb-1">{member.name}</h3>
+        <p className="text-primary font-medium mb-4">{member.role}</p>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+          {member.description}
+        </p>
+
+        <div className="flex justify-center gap-4">
+          {[Github, Facebook, Instagram, Linkedin].map((Icon, i) => (
+            <a
+              key={i}
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-full bg-secondary/80 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
+            >
+              <Icon className="w-5 h-5" />
+            </a>
+          ))}
+        </div>
+      </div>
+    </motion.div>
   )
 }
 
-const TeamCard = ({ member, index }: any) => (
-  <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6, delay: index * 0.08 }}
-  >
-    <div className="p-6 rounded-2xl bg-card border text-center hover:shadow-xl hover:-translate-y-2 transition">
-      <img
-        src={member.image}
-        className="w-28 h-28 mx-auto rounded-full object-cover mb-4"
-      />
-      <h3 className="text-xl font-bold">{member.name}</h3>
-      <p className="text-primary mb-3">{member.role}</p>
-      <p className="text-sm text-muted-foreground mb-4">{member.description}</p>
-
-      <div className="flex justify-center gap-3">
-        {[Github, Facebook, Instagram, Linkedin].map((Icon, i) => (
-          <Icon key={i} className="w-5 h-5 cursor-pointer" />
-        ))}
-      </div>
-    </div>
-  </motion.div>
-)
-
 export function TeamSection() {
   const sectionRef = useRef(null)
-  const carouselRef = useRef(null)
-  const isInView = useInView(sectionRef, { once: true })
-
-  const cardsPerSlide = 3
-  const slides = chunkArray(team, cardsPerSlide)
-  const slideCount = slides.length
-
-  const { scrollYProgress } = useScroll({
-    target: carouselRef,
-    offset: ["start start", "end end"],
-  })
-
-  const x = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["0%", `-${(slideCount - 1) * 100}%`]
-  )
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
 
   return (
-    <section ref={sectionRef} className="py-20">
+    <section ref={sectionRef} className="py-20 bg-secondary/30 relative overflow-hidden">
+      {/* Decorative lines (optional) */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+
       <div className="container mx-auto px-6">
-        {/* Title */}
+        {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-16"
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-2xl mx-auto mb-16"
         >
-          <h2 className="text-4xl font-bold">
-            Meet Our <span className="text-primary">Team</span>
+          <span className="text-primary text-sm font-semibold tracking-wider uppercase">
+            Our Team
+          </span>
+          <h2 className="text-3xl md:text-5xl font-bold mt-4 mb-6">
+            Meet The <span className="text-primary">Experts</span>
           </h2>
+          <p className="text-muted-foreground text-lg">
+            Our talented team of professionals is dedicated to delivering excellence
+            in every project we undertake.
+          </p>
         </motion.div>
 
-        {/* Horizontal Scroll Section */}
-        <div
-          ref={carouselRef}
-          style={{ height: `${slideCount * 100}vh` }} // ✅ FIXED
-        >
-          <div className="sticky bgye top-0 h-screen flex items-center overflow-hidden">
-            <motion.div style={{ x }} className="flex w-full">
-              {slides.map((slide, i) => (
-                <div
-                  key={i}
-                  className="w-full flex-shrink-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4"
-                >
-                  {slide.map((member, idx) => (
-                    <TeamCard
-                      key={member.name}
-                      member={member}
-                      index={idx}
-                    />
-                  ))}
-                </div>
-              ))}
-            </motion.div>
-          </div>
+        {/* Responsive Grid – 1 column on mobile, 2 on tablet, 3 on desktop */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {team.map((member, index) => (
+            <TeamCard key={member.name} member={member} index={index} />
+          ))}
         </div>
       </div>
     </section>
