@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, useInView } from "framer-motion"
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 import { ExternalLink, Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -54,6 +54,30 @@ const projects = [
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop",
     tags: ["Angular", "NestJS", "GraphQL", "Azure"],
   },
+  {
+    title: "SecurePay",
+    category: "Fintech",
+    description:
+      "Advanced payment processing platform with AI fraud prevention, instant transfers, and global currency support.",
+    image: "https://images.unsplash.com/photo-1563013544-824ae1b273d2?w=600&h=400&fit=crop",
+    tags: ["Next.js", "Node.js", "Stripe", "TensorFlow"],
+  },
+  {
+    title: "WellnessTrack",
+    category: "Healthcare",
+    description:
+      "AI-powered wellness platform for remote patient monitoring, personalized health plans, and telemedicine integration.",
+    image: "https://images.unsplash.com/photo-1559757148-5e995136c7b2?w=600&h=400&fit=crop",
+    tags: ["React Native", "Firebase", "Machine Learning", "IoT"],
+  },
+  {
+    title: "LearnForge",
+    category: "Education",
+    description:
+      "Innovative learning management system with AI-powered tutoring, interactive simulations, and global student collaboration.",
+    image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&h=400&fit=crop",
+    tags: ["Vue.js", "Flask", "WebSockets", "AI"],
+  },
 ]
 
 const categories = ["All", "Fintech", "Healthcare", "Education", "Logistics", "E-commerce", "Productivity"]
@@ -62,11 +86,21 @@ export function ProjectsSection() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const [activeFilter, setActiveFilter] = useState("All")
+  const [showAll, setShowAll] = useState(false)
+
+  // Reset to first 6 cards whenever the filter changes
+  useEffect(() => {
+    setShowAll(false)
+  }, [activeFilter])
 
   const filteredProjects =
     activeFilter === "All"
       ? projects
       : projects.filter((project) => project.category === activeFilter)
+
+  const displayedProjects = showAll
+    ? filteredProjects
+    : filteredProjects.slice(0, 6)
 
   return (
     <section id="projects" className="py-24 bg-background relative">
@@ -113,9 +147,9 @@ export function ProjectsSection() {
           ))}
         </motion.div>
 
-        {/* Projects Grid */}
+        {/* Projects Grid – Only 6 shown initially */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, index) => (
+          {displayedProjects.map((project, index) => (
             <motion.div
               key={project.title}
               initial={{ opacity: 0, y: 30 }}
@@ -124,48 +158,52 @@ export function ProjectsSection() {
               layout
               className="group"
             >
-              <div className="relative rounded-2xl overflow-hidden bg-card border border-border hover:border-primary/50 transition-all duration-300 h-full">
-                <div className="relative h-48 overflow-hidden">
+              <div className="relative rounded-3xl overflow-hidden bg-card border border-border hover:border-primary/50 shadow-md hover:shadow-2xl group-hover:-translate-y-1 transition-all duration-300 h-full">
+                <div className="relative h-56 overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 grayscale group-hover:grayscale-0"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
                   <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 text-xs font-medium bg-primary/90 text-primary-foreground rounded-full">
+                    <span className="px-3 py-1 text-xs font-medium bg-primary/90 text-primary-foreground rounded-full backdrop-blur-md">
                       {project.category}
                     </span>
                   </div>
-                  <div className="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  
+                  <div className="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
                     <Button
                       size="icon"
                       variant="secondary"
-                      className="w-9 h-9 rounded-full bg-background/80 hover:bg-background"
+                      className="w-9 h-9 rounded-full bg-background/90 hover:bg-background backdrop-blur-md border border-white/20"
                     >
                       <ExternalLink className="w-4 h-4" />
                     </Button>
                     <Button
                       size="icon"
                       variant="secondary"
-                      className="w-9 h-9 rounded-full bg-background/80 hover:bg-background"
+                      className="w-9 h-9 rounded-full bg-background/90 hover:bg-background backdrop-blur-md border border-white/20"
                     >
                       <Github className="w-4 h-4" />
                     </Button>
                   </div>
                 </div>
+                
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                  <p className="text-sm text-muted-foreground mb-5 line-clamp-3">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-2 py-1 text-xs bg-secondary text-secondary-foreground rounded"
+                        className="px-3 py-1 text-xs bg-secondary/80 text-secondary-foreground rounded-full font-medium"
                       >
                         {tag}
                       </span>
@@ -176,6 +214,46 @@ export function ProjectsSection() {
             </motion.div>
           ))}
         </div>
+
+        {/* Show More Button – visible when there are more than 6 projects and not showing all */}
+        {!showAll && filteredProjects.length > 6 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex justify-center mt-12"
+          >
+            <Button
+              onClick={() => setShowAll(true)}
+              size="lg"
+              className="px-10 py-6 text-base font-semibold rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300"
+            >
+              Show More Projects 
+              <span className="ml-2 text-sm opacity-75">
+                (+{filteredProjects.length - 6} remaining)
+              </span>
+            </Button>
+          </motion.div>
+        )}
+
+        {/* Show Less Button – visible when showing all and there are more than 6 projects */}
+        {showAll && filteredProjects.length > 6 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex justify-center mt-12"
+          >
+            <Button
+              onClick={() => setShowAll(false)}
+              size="lg"
+              variant="outline"
+              className="px-10 py-6 text-base font-semibold rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300"
+            >
+              Show Less
+            </Button>
+          </motion.div>
+        )}
       </div>
     </section>
   )
