@@ -149,6 +149,8 @@ export function TeamSection() {
           </p>
         </div>
 
+        {/* TEST */}
+
         {/* Carousel */}
         <div className="relative">
           {/* Arrows – hidden on mobile */}
