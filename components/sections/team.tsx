@@ -31,14 +31,14 @@ const team = [
     image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1773960726/Gemini_Generated_Image_86h6dn86h6dn86h6_uurljm.png",
   },
   {
-    name: "Akila Peris",
-    role: "Front Developer",
+    name: "Akila Chamara",
+    role: "Full Stack Developer",
     description: "Specializes in modern JavaScript and CSS, turning complex requirements into clean, user-friendly interfaces with a focus on responsive design.",
     image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1773959681/unnamed_2_vbffge.jpg",
   },
   {
     name: "Chamindu Chirantha",
-    role: "Front Developer",
+    role: "Frontend Developer",
     description: "Passionate about the visual side of tech, focusing on creating fast, interactive web experiences through efficient React development.",
     image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1773960613/Gemini_Generated_Image_vmxmlpvmxmlpvmxm_gfsa3h.png",
   },
