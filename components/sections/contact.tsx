@@ -1,11 +1,13 @@
 "use client"
 
 import { motion, useInView } from "framer-motion"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Send, Mail, Phone, MapPin, CheckCircle2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import emailjs from "@emailjs/browser";
+import { id } from "date-fns/locale"
 
 export function ContactSection() {
   const ref = useRef(null)
@@ -13,14 +15,43 @@ export function ContactSection() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
+    useEffect(()=> {
+      emailjs.init("jZQU_K7Z5Jj3iM9vZ");
+    }, []);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsLoading(true)
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-    setIsLoading(false)
-    setIsSubmitted(true)
-  }
+    e.preventDefault();
+    setIsLoading(true);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const data = {
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      subject: formData.get("subject") as string,
+      message: formData.get("message") as string,
+    };
+
+    try {
+      const response = await emailjs.send(
+        "service_4jhbtbl",
+        "template_hwcxrkn",
+        data,
+        "jZQU_K7Z5Jj3iM9vZ"
+      );
+
+      console.log("✅ Email sent successfully!", response);
+
+      setIsSubmitted(true);
+      form.reset();
+    } catch (error) {
+      console.error("❌ Failed to send email:", error);
+    } finally {
+      setIsLoading(false);
+    }
+};   
+  
 
   return (
     <section id="contact" className="py-24 bg-secondary/30 relative overflow-hidden">
@@ -148,6 +179,7 @@ export function ContactSection() {
                         name="name"
                         placeholder="John Doe"
                         required
+                        
                         className="bg-secondary border-border focus:border-primary"
                       />
                     </div>
