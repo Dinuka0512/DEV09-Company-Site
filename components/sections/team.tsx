@@ -188,6 +188,7 @@ export function TeamSection() {
                 const end = start + itemsPerView
                 const slideMembers = team.slice(start, end)
 
+                
                 return (
                   <div
                     key={slideIdx}
