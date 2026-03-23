@@ -56,9 +56,8 @@ export function AboutSection() {
             Who We <span className="text-primary">Are</span>
           </h2>
           <p className="text-muted-foreground max-w-3xl mx-auto text-lg text-pretty">
-            DEV09 is a premier software development company dedicated to crafting
-            innovative digital solutions. With over a decade of experience, we have
-            helped businesses of all sizes transform their ideas into reality.
+           DEV09 is a forward-thinking software development company focused on building innovative and scalable digital solutions.
+            We specialize in transforming ideas into powerful, user-centric products that help businesses grow and adapt in a rapidly evolving digital world.
           </p>
         </motion.div>
 
@@ -98,12 +97,10 @@ export function AboutSection() {
         >
           <div className="p-8 rounded-2xl bg-card border border-border">
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Founded in 2014, DEV09 started with a simple mission: to bridge the gap
-              between complex technology and business needs. Today, we are proud to have
-              served over 50 clients across multiple industries, delivering solutions
-              that not only meet but exceed expectations. Our team of passionate
-              developers, designers, and strategists work together to create software
-              that makes a difference.
+             Founded in 2026, DEV09 began with a clear mission — to simplify complex technology and make it accessible for real business impact.
+              Since then, we have worked with clients across multiple industries, delivering high-quality solutions tailored to their unique needs.
+             Our team of passionate developers, designers, and strategists collaborate to create software that is not only functional,
+              but meaningful and future-ready. We believe in innovation, continuous learning, and building products that truly make a difference.
             </p>
           </div>
         </motion.div>
