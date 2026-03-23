@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title: 'DEV09 - Code The Future, Command The World.',
   description: 'DEV09 is a cutting-edge software development company delivering innovative solutions for businesses worldwide.',
   icons: {
-    icon:{ url: '/favicon.ico' }
+    icon:{ url: '/Favicon.ico' }
   },
 }
 
