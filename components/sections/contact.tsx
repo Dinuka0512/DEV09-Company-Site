@@ -17,7 +17,7 @@ export function ContactSection() {
   const [isLoading, setIsLoading] = useState(false)
 
     useEffect(()=> {
-      emailjs.init("jZQU_K7Z5Jj3iM9vZ");
+      emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!);
     }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
