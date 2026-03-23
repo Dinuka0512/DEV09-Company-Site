@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { CheckCircle2, Clock, Award, Users, Headphones, Rocket } from "lucide-react"
+import { CheckCircle2, Clock, Award, Users, Headphones, Rocket, Languages } from "lucide-react"
 
 const advantages = [
   {
@@ -22,7 +22,11 @@ const advantages = [
   {
     icon: Users,
     title: "Expert Team",
+<<<<<<< HEAD
     description: "Senior developers with 2+ years average experience across diverse technologies.",
+=======
+    description: "Senior developers with 8+ years average experience across diverse technologies.",
+>>>>>>> hiruna
     stat: "10+",
     statLabel: "Expert developers",
   },
