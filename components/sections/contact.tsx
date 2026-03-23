@@ -100,20 +100,20 @@ export function ContactSection() {
                 {
                   icon: Mail,
                   label: "Email",
-                  value: "hello@dev09.com",
-                  href: "mailto:hello@dev09.com",
+                  value: "Dinuka0512@gmail.com",
+                  href: "mailto:Dinuka0512@gmail.com",
                 },
                 {
                   icon: Phone,
                   label: "Phone",
-                  value: "+1 (555) 123-4567",
-                  href: "tel:+15551234567",
+                  value: "+94787135526",
+                  href: "tel:+94787135526",
                 },
                 {
                   icon: MapPin,
                   label: "Address",
-                  value: "123 Tech Street, San Francisco, CA 94105",
-                  href: "#",
+                  value: "96 D/1 Namauluwa, Kothalawala, Bandaragama",
+                  href: "https://maps.app.goo.gl/sJ24akAF1SLhBjng7",
                 },
               ].map((contact) => (
                 <motion.a

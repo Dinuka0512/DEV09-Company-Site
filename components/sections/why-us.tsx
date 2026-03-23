@@ -9,7 +9,7 @@ const advantages = [
     icon: Clock,
     title: "On-Time Delivery",
     description: "We respect deadlines and deliver projects on schedule without compromising quality.",
-    stat: "98%",
+    stat: "90%",
     statLabel: "On-time delivery rate",
   },
   {
@@ -22,7 +22,7 @@ const advantages = [
   {
     icon: Users,
     title: "Expert Team",
-    description: "Senior developers with 8+ years average experience across diverse technologies.",
+    description: "Senior developers with 2+ years average experience across diverse technologies.",
     stat: "10+",
     statLabel: "Expert developers",
   },
