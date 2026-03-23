@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { CheckCircle2, Clock, Award, Users, Headphones, Rocket } from "lucide-react"
+import { CheckCircle2, Clock, Award, Users, Headphones, Rocket, Languages } from "lucide-react"
 
 const advantages = [
   {
