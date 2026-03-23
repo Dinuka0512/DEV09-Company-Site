@@ -7,31 +7,31 @@ import { Button } from "@/components/ui/button"
 
 const projects = [
   {
-    title: "FinanceFlow",
-    category: "Fintech",
+    title: "MYBIZ – Complete Business Management Solution",
+    category: "E-commerce",
     description:
-      "A comprehensive financial management platform with real-time analytics, automated reporting, and AI-powered insights.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
-    tags: ["React", "Node.js", "PostgreSQL", "AI"],
+      "MYBIZ – Complete Business Management Solution \nIt's a powerful and user-friendly business management application designed to streamline daily business operations. Built for entrepreneurs, small businesses, and growing enterprises, MYBIZ helps you manage your business efficiently from a single platform.",
+    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1774279949/MY_BIZ_App_banner_qurmal.jpg",
+    tags: ["React native", "Expo", "Fierbase", "NativeWind"],
   },
   {
-    title: "HealthHub Pro",
-    category: "Healthcare",
+    title: "GearLog - Smart Vehicle Maintenance & Expense Tracker",
+    category: "Productivity",
     description:
-      "Telemedicine platform connecting patients with healthcare providers. Features video consultations and health tracking.",
+      "GearLog is a comprehensive mobile application designed to simplify vehicle ownership. It allows users to track maintenance records, monitor fuel costs, manage vehicle documents, and receive timely reminders for services and insurance renewals. Built for performance and reliability using React Native (Expo) and Firebase. Copyright © 2026 Dilshan Hesara. All Rights Reserved.",
     image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=600&h=400&fit=crop",
-    tags: ["Next.js", "WebRTC", "MongoDB", "AWS"],
+    tags: ["React Native", "Expo", "Firebase", "TypeScript", "TailwindCSS"],
   },
   {
-    title: "EduLearn Academy",
-    category: "Education",
+    title: "MKD-Cinemas-Complete-Cinema-Management-System",
+    category: "E-commerce",
     description:
-      "Interactive e-learning platform with live classes, progress tracking, and personalized learning paths.",
+      "A comprehensive, full-stack web application designed for modern cinema management. This system features a seamless Customer Booking Portal, a powerful Super Admin Dashboard for resource management, and a Receptionist POS for handling counter sales and shift reports.",
     image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=600&h=400&fit=crop",
-    tags: ["Vue.js", "Django", "Redis", "Docker"],
+    tags: ["MongoDB", "Express", "React", "Node"],
   },
   {
-    title: "LogiTrack",
+    title: "Dilshan Coconut Oil Mill Management System",
     category: "Logistics",
     description:
       "Real-time fleet management and logistics optimization system with GPS tracking and route planning.",
@@ -39,10 +39,10 @@ const projects = [
     tags: ["React Native", "Go", "PostgreSQL", "Maps API"],
   },
   {
-    title: "ShopSmart",
+    title: "Library Management System",
     category: "E-commerce",
     description:
-      "AI-powered e-commerce platform with personalized recommendations, inventory management, and analytics.",
+      "Gnanapradeepa Public Library This is a Java-based Library Management System developed for Gnanapradeepa Public Library, Bandaragama. The system follows a layered architecture and provides efficient management of library operations.",
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
     tags: ["Next.js", "Stripe", "Elasticsearch", "ML"],
   },
