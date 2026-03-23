@@ -75,11 +75,11 @@ export function ContactSection() {
             Contact Us
           </span>
           <h2 className="text-3xl md:text-5xl font-bold mt-4 mb-6 text-balance">
-            Let&apos;s Start A <span className="text-primary">Project</span>
+            Let's Start A <span className="text-primary">Project</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg text-pretty">
             Ready to transform your ideas into reality? Get in touch with us and
-            let&apos;s discuss how we can help your business grow.
+            let's discuss how we can help your business grow.
           </p>
         </motion.div>
 

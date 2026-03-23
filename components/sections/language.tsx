@@ -49,7 +49,7 @@ export function LanguagesSection() {
       await controls.start({
         x: [-0, -width, 0], // go left, then back right
         transition: {
-          duration: 60,      // 60 seconds for full cycle (left + right)
+          duration: 70,      // 60 seconds for full cycle (left + right)
           ease: "linear",
           repeat: Infinity,
           repeatType: "loop", // we use an array to define the keyframes

@@ -5,14 +5,13 @@ import { useEffect, useRef } from "react"
 import { useInView } from "framer-motion" // still used for title entrance
 
 const clients = [
-  { logo: "DinukaGrapics" },
-  { name: "InnovateLab", logo: "IL" },
-  { name: "DataDrive", logo: "DD" },
-  { name: "CloudFirst", logo: "CF" },
-  { name: "NextGen", logo: "NG" },
-  { name: "SmartSystems", logo: "SS" },
-  { name: "FutureTech", logo: "FT" },
-  { name: "GlobalNet", logo: "GN" },
+  { name: "Dinukagrapics"},
+  { name: "Huruwagraphy"},
+  { name: "Tringledo"},
+  { name: "MYBIZ"},
+  { name: "Dillshan Oill Mill"},
+  { name: "GearLog"},
+  { name: "MKD"}
 ]
 
 export function ClientsSection() {
@@ -31,11 +30,12 @@ export function ClientsSection() {
       const width = marqueeRef.current.scrollWidth / 2
 
       await controls.start({
-        x: -width,
+        x: [0, -width, 0],
         transition: {
-          duration: 60,           // ~60s for full cycle – slow & elegant
+          duration: 30,           // ~30s for full cycle (left then right)
           ease: "linear",
           repeat: Infinity,
+          repeatType: "loop",
         },
       })
     }
@@ -43,23 +43,9 @@ export function ClientsSection() {
     animateMarquee()
   }, [controls])
 
-  // Pause on hover
-  const handleHoverStart = () => controls.stop()
-  const handleHoverEnd = () => {
-    // Restart from current position
-    controls.start({
-      x: marqueeRef.current ? - (marqueeRef.current.scrollWidth / 2) : 0,
-      transition: {
-        duration: 60,
-        ease: "linear",
-        repeat: Infinity,
-      },
-    })
-  }
-
   return (
-    <section className="py-24 bg-background relative">
-      <div className="container mx-auto px-6" ref={ref}>
+    <section className="relative mt-7">
+      <div className="container mx-auto" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -78,11 +64,7 @@ export function ClientsSection() {
         </motion.div>
 
         {/* Infinite Marquee */}
-        <div
-          className="relative overflow-hidden"
-          onMouseEnter={handleHoverStart}
-          onMouseLeave={handleHoverEnd}
-        >
+        <div className="relative overflow-hidden mb-10">
           {/* Fade edges */}
           <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
@@ -90,7 +72,7 @@ export function ClientsSection() {
           <motion.div
             ref={marqueeRef}
             animate={controls}
-            className="flex gap-8 md:gap-12 whitespace-nowrap"
+            className="flex gap-8 md:gap-12 whitespace-nowrap bg-red"
             initial={{ x: 0 }}
           >
             {/* First set */}
@@ -99,12 +81,12 @@ export function ClientsSection() {
                 key={client.name}
                 className="flex-shrink-0"
               >
-                <div className="w-48 h-24 rounded-xl bg-card border border-border flex items-center justify-center hover:border-primary/50 hover:shadow-md transition-all duration-300 group">
+                <div className="min-w-20 h-20 md:min-w-20 md:h-20 lg:min-w-[192px] lg:h-24 rounded-xl bg-card border border-border flex items-center justify-center hover:border-primary/50 hover:shadow-md transition-all duration-300 group">
                   <div className="text-center">
                     <span className="text-3xl font-bold text-muted-foreground group-hover:text-primary transition-colors">
                       {client.logo}
                     </span>
-                    <p className="text-xs text-muted-foreground mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <p className="text-xs text-muted-foreground mt-2 transition-opacity">
                       {client.name}
                     </p>
                   </div>
@@ -118,12 +100,12 @@ export function ClientsSection() {
                 key={`dup-${client.name}`}
                 className="flex-shrink-0"
               >
-                <div className="w-48 h-24 rounded-xl bg-card border border-border flex items-center justify-center hover:border-primary/50 hover:shadow-md transition-all duration-300 group">
+                <div className="min-w-20 h-20 md:min-w-20 md:h-20 lg:min-w-[192px] lg:h-24 rounded-xl bg-card border border-border flex items-center justify-center hover:border-primary/50 hover:shadow-md transition-all duration-300 group">
                   <div className="text-center">
                     <span className="text-3xl font-bold text-muted-foreground group-hover:text-primary transition-colors">
                       {client.logo}
                     </span>
-                    <p className="text-xs text-muted-foreground mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <p className="text-xs text-muted-foreground mt-2 transition-opacity">
                       {client.name}
                     </p>
                   </div>
@@ -133,23 +115,7 @@ export function ClientsSection() {
           </motion.div>
         </div>
 
-        {/* Mobile fallback – static grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:hidden gap-6 mt-12">
-          {clients.map((client, i) => (
-            <motion.div
-              key={client.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-            >
-              <div className="h-20 rounded-xl bg-card border border-border flex items-center justify-center shadow-sm">
-                <span className="text-2xl font-bold text-muted-foreground">
-                  {client.logo}
-                </span>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        {/* Mobile/tablet static box fallback removed; animation-only as requested */}
       </div>
     </section>
   )

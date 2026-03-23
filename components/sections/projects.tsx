@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 const projects = [
   {
     title: "MYBIZ – Complete Business Management Solution",
-    category: "E-commerce",
+    category: "Mobile",
     description:
       "MYBIZ – Complete Business Management Solution \nIt's a powerful and user-friendly business management application designed to streamline daily business operations. Built for entrepreneurs, small businesses, and growing enterprises, MYBIZ helps you manage your business efficiently from a single platform.",
     image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1774279949/MY_BIZ_App_banner_qurmal.jpg",
@@ -16,71 +16,47 @@ const projects = [
   },
   {
     title: "GearLog - Smart Vehicle Maintenance & Expense Tracker",
-    category: "Productivity",
+    category: "Mobile",
     description:
       "GearLog is a comprehensive mobile application designed to simplify vehicle ownership. It allows users to track maintenance records, monitor fuel costs, manage vehicle documents, and receive timely reminders for services and insurance renewals. Built for performance and reliability using React Native (Expo) and Firebase. Copyright © 2026 Dilshan Hesara. All Rights Reserved.",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=600&h=400&fit=crop",
+    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1774289026/Gemini_Generated_Image_ysjzlrysjzlrysjz_a36bnp.png",
     tags: ["React Native", "Expo", "Firebase", "TypeScript", "TailwindCSS"],
   },
   {
-    title: "MKD-Cinemas-Complete-Cinema-Management-System",
-    category: "E-commerce",
+    title: "MKD - Cinemas Complete Cinema Management System",
+    category: "Website",
     description:
       "A comprehensive, full-stack web application designed for modern cinema management. This system features a seamless Customer Booking Portal, a powerful Super Admin Dashboard for resource management, and a Receptionist POS for handling counter sales and shift reports.",
-    image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=600&h=400&fit=crop",
+    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1774289291/Gemini_Generated_Image_ewhfqjewhfqjewhf_nr1den.png",
     tags: ["MongoDB", "Express", "React", "Node"],
   },
   {
     title: "Dilshan Coconut Oil Mill Management System",
-    category: "Logistics",
+    category: "Desktop App",
     description:
       "Real-time fleet management and logistics optimization system with GPS tracking and route planning.",
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop",
-    tags: ["React Native", "Go", "PostgreSQL", "Maps API"],
+    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1774289551/Gemini_Generated_Image_nd4hbmnd4hbmnd4h_dpjbxa.png",
+    tags: ["JavaFx", "ORM", "Hybernate", "Mysql"],
   },
   {
     title: "Library Management System",
-    category: "E-commerce",
+    category: "Desktop App",
     description:
       "Gnanapradeepa Public Library This is a Java-based Library Management System developed for Gnanapradeepa Public Library, Bandaragama. The system follows a layered architecture and provides efficient management of library operations.",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
-    tags: ["Next.js", "Stripe", "Elasticsearch", "ML"],
+    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1774289964/Gemini_Generated_Image_dtcbn0dtcbn0dtcb_lmgyty.png",
+    tags: ["JavaFx", "Mysql","Desktop Application"],
   },
   {
-    title: "TaskMaster Pro",
-    category: "Productivity",
+    title: "CineTime - Smart Movie Tracking & Engagement Platform",
+    category: "Website",
     description:
-      "Enterprise project management tool with team collaboration, time tracking, and resource allocation.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop",
-    tags: ["Angular", "NestJS", "GraphQL", "Azure"],
-  },
-  {
-    title: "SecurePay",
-    category: "Fintech",
-    description:
-      "Advanced payment processing platform with AI fraud prevention, instant transfers, and global currency support.",
-    image: "https://images.unsplash.com/photo-1563013544-824ae1b273d2?w=600&h=400&fit=crop",
-    tags: ["Next.js", "Node.js", "Stripe", "TensorFlow"],
-  },
-  {
-    title: "WellnessTrack",
-    category: "Healthcare",
-    description:
-      "AI-powered wellness platform for remote patient monitoring, personalized health plans, and telemedicine integration.",
-    image: "https://images.unsplash.com/photo-1559757148-5e995136c7b2?w=600&h=400&fit=crop",
-    tags: ["React Native", "Firebase", "Machine Learning", "IoT"],
-  },
-  {
-    title: "LearnForge",
-    category: "Education",
-    description:
-      "Innovative learning management system with AI-powered tutoring, interactive simulations, and global student collaboration.",
-    image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&h=400&fit=crop",
-    tags: ["Vue.js", "Flask", "WebSockets", "AI"],
-  },
+      "CineTime is a premium, full-stack MERN application designed for cinema enthusiasts to discover, track, and analyze their movie-watching habits. Featuring a high-end Crimson Cinema dark theme, the platform offers secure authentication, real-time media discovery via TMDB, and AI-powered insights.",
+    image: "https://res.cloudinary.com/dgokbm0dx/image/upload/v1774291195/Gemini_Generated_Image_dbjl3odbjl3odbjl_k4cais.png",
+    tags: ["React.js", "TypeScript","Tailwind CSS", "Node.js", "MongoDB", "Nodemailer", "Google Generative AI"],
+  }
 ]
 
-const categories = ["All", "Fintech", "Healthcare", "Education", "Logistics", "E-commerce", "Productivity"]
+const categories = ["All", "Mobile", "Website", "Desktop App"]
 
 export function ProjectsSection() {
   const ref = useRef(null)
