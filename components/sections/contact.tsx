@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import emailjs from "@emailjs/browser";
+import dotenv from "dotenv"
 import { id } from "date-fns/locale"
 
 export function ContactSection() {
@@ -33,12 +34,18 @@ export function ContactSection() {
       message: formData.get("message") as string,
     };
 
+    console.log("Env vars:", {
+      service: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+      template: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+      public: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
+    });
+
     try {
       const response = await emailjs.send(
-        "service_4jhbtbl",
-        "template_hwcxrkn",
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_KEY!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
         data,
-        "jZQU_K7Z5Jj3iM9vZ"
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
       );
 
       console.log("✅ Email sent successfully!", response);
@@ -100,20 +107,21 @@ export function ContactSection() {
                 {
                   icon: Mail,
                   label: "Email",
-                  value: "Dinuka0512@gmail.com",
-                  href: "mailto:Dinuka0512@gmail.com",
+                  value: "dev09company@gmail.com",
+                  href: "mailto:dev09company@gmail.com",
                 },
                 {
                   icon: Phone,
                   label: "Phone",
-                  value: "+94787135526",
-                  href: "tel:+94787135526",
+                  value: "(+94) 76 795 2208",
+                  href: "tel:+94767952208",
                 },
+
                 {
                   icon: MapPin,
                   label: "Address",
-                  value: "96 D/1 Namauluwa, Kothalawala, Bandaragama",
-                  href: "https://maps.app.goo.gl/sJ24akAF1SLhBjng7",
+                  value: "Panadura, Kalutara District, Sri Lanka",
+                  href: "#",
                 },
               ].map((contact) => (
                 <motion.a
