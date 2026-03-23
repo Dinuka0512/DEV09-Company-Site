@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react"
 import { useInView } from "framer-motion" // still used for title entrance
 
 const clients = [
-  { name: "TechCorp", logo: "TC" },
+  { logo: "DinukaGrapics" },
   { name: "InnovateLab", logo: "IL" },
   { name: "DataDrive", logo: "DD" },
   { name: "CloudFirst", logo: "CF" },

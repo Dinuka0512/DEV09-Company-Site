@@ -22,11 +22,7 @@ const advantages = [
   {
     icon: Users,
     title: "Expert Team",
-<<<<<<< HEAD
     description: "Senior developers with 2+ years average experience across diverse technologies.",
-=======
-    description: "Senior developers with 8+ years average experience across diverse technologies.",
->>>>>>> hiruna
     stat: "10+",
     statLabel: "Expert developers",
   },
@@ -67,7 +63,7 @@ export function WhyUsSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
           <span className="text-primary text-sm font-semibold tracking-wider uppercase">
             Why Choose Us

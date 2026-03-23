@@ -76,7 +76,7 @@ export function ServicesSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
           <span className="text-primary text-sm font-semibold tracking-wider uppercase">
             Our Services

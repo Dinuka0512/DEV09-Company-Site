@@ -60,30 +60,12 @@ export function LanguagesSection() {
     animateMarquee()
   }, [controls])
 
-  // Pause on hover
-  const handleHoverStart = () => controls.stop()
-  const handleHoverEnd = () => {
-    if (!marqueeRef.current) return
-    const width = marqueeRef.current.scrollWidth / 2
-    controls.start({
-      x: [-0, -width, 0],
-      transition: {
-        duration: 70,
-        ease: "linear",
-        repeat: Infinity,
-        repeatType: "loop",
-      },
-    })
-  }
-
   return (
-    <section className="bg-background relative py-12">
-      <div className="container mx-auto px-6" ref={ref}>
+    <section className="relative mb-4">
+      <div className="container mx-auto" ref={ref}>
         {/* Infinite Marquee */}
         <div
           className="relative overflow-hidden"
-          onMouseEnter={handleHoverStart}
-          onMouseLeave={handleHoverEnd}
         >
           {/* Fade edges */}
           <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
@@ -98,15 +80,15 @@ export function LanguagesSection() {
             {/* First set */}
             {technologies.map((tech) => (
               <div key={tech.name} className="flex-shrink-0">
-                <div className="w-36 h-16 rounded-lg bg-card border border-border flex items-center justify-center hover:border-primary/50 hover:shadow-md transition-all duration-300 group">
+                <div className="w-20 h-20 md:w-36 md:h-16 rounded-lg bg-card border border-border flex items-center justify-center hover:border-primary/50 hover:shadow-md transition-all duration-300 group">
                   <div className="text-center flex flex-col items-center">
                     <img
                       src={`https://cdn.simpleicons.org/${tech.slug}/white`}
                       alt={tech.name}
-                      className="w-6 h-6 mb-1 transition-transform group-hover:scale-110"
+                      className="w-5 h-5 md:w-6 md:h-6 mb-1 transition-transform group-hover:scale-110"
                       loading="lazy"
                     />
-                    <span className="text-[10px] text-muted-foreground group-hover:text-primary transition-colors">
+                    <span className="text-[9px] md:text-[10px] text-muted-foreground group-hover:text-primary transition-colors">
                       {tech.name}
                     </span>
                   </div>
@@ -117,15 +99,15 @@ export function LanguagesSection() {
             {/* Duplicate set for seamless loop */}
             {technologies.map((tech) => (
               <div key={`dup-${tech.name}`} className="flex-shrink-0">
-                <div className="w-36 h-16 rounded-lg bg-card border border-border flex items-center justify-center hover:border-primary/50 hover:shadow-md transition-all duration-300 group">
+                <div className="w-20 h-20 md:w-36 md:h-16 rounded-lg bg-card border border-border flex items-center justify-center hover:border-primary/50 hover:shadow-md transition-all duration-300 group">
                   <div className="text-center flex flex-col items-center">
                     <img
                       src={`https://cdn.simpleicons.org/${tech.slug}/white`}
                       alt={tech.name}
-                      className="w-6 h-6 mb-1 transition-transform group-hover:scale-110"
+                      className="w-5 h-5 md:w-6 md:h-6 mb-1 transition-transform group-hover:scale-110"
                       loading="lazy"
                     />
-                    <span className="text-[10px] text-muted-foreground group-hover:text-primary transition-colors">
+                    <span className="text-[9px] md:text-[10px] text-muted-foreground group-hover:text-primary transition-colors">
                       {tech.name}
                     </span>
                   </div>
@@ -133,32 +115,6 @@ export function LanguagesSection() {
               </div>
             ))}
           </motion.div>
-        </div>
-
-        {/* Mobile fallback – static grid */}
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:hidden gap-3 mt-8">
-          {technologies.map((tech, i) => (
-            <motion.div
-              key={tech.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.02 }}
-            >
-              <div className="h-16 rounded-lg bg-card border border-border flex items-center justify-center shadow-sm">
-                <div className="text-center flex flex-col items-center">
-                  <img
-                    src={`https://cdn.simpleicons.org/${tech.slug}/white`}
-                    alt={tech.name}
-                    className="w-5 h-5 mb-1"
-                    loading="lazy"
-                  />
-                  <span className="text-[9px] text-muted-foreground">
-                    {tech.name}
-                  </span>
-                </div>
-              </div>
-            </motion.div>
-          ))}
         </div>
       </div>
     </section>
