@@ -44,12 +44,31 @@ export function Navbar() {
   }, [])
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+    const target = document.querySelector(href)
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" })
+    } else {
+      // fallback to hash navigation for safety
+      window.location.hash = href
     }
+
     setIsMobileMenuOpen(false)
+
+    // small delay to ensure scrollbar handles the element if still coming into view
+    setTimeout(() => {
+      const fallback = document.querySelector(href)
+      if (fallback) {
+        fallback.scrollIntoView({ behavior: "smooth", block: "start" })
+      }
+    }, 50)
   }
+
+  useEffect(() => {
+    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "auto"
+    return () => {
+      document.body.style.overflow = "auto"
+    }
+  }, [isMobileMenuOpen])
 
   return (
     <motion.header
@@ -122,7 +141,8 @@ export function Navbar() {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden text-foreground"
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            className="md:hidden text-foreground z-50"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -138,6 +158,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-background/95 backdrop-blur-md border-b border-border"
+            style={{ zIndex: 49 }}
           >
             <div className="container mx-auto px-6 py-4 flex flex-col gap-2">
               {navItems.map((item) => (

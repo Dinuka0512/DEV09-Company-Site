@@ -84,7 +84,6 @@ export function ClientsSection() {
                 <div className="min-w-20 h-20 md:min-w-20 md:h-20 lg:min-w-[192px] lg:h-24 rounded-xl bg-card border border-border flex items-center justify-center hover:border-primary/50 hover:shadow-md transition-all duration-300 group">
                   <div className="text-center">
                     <span className="text-3xl font-bold text-muted-foreground group-hover:text-primary transition-colors">
-                      {client.logo}
                     </span>
                     <p className="text-xs text-muted-foreground mt-2 transition-opacity">
                       {client.name}
@@ -103,7 +102,7 @@ export function ClientsSection() {
                 <div className="min-w-20 h-20 md:min-w-20 md:h-20 lg:min-w-[192px] lg:h-24 rounded-xl bg-card border border-border flex items-center justify-center hover:border-primary/50 hover:shadow-md transition-all duration-300 group">
                   <div className="text-center">
                     <span className="text-3xl font-bold text-muted-foreground group-hover:text-primary transition-colors">
-                      {client.logo}
+                      {/* {client.logo} */}
                     </span>
                     <p className="text-xs text-muted-foreground mt-2 transition-opacity">
                       {client.name}
