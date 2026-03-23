@@ -12,6 +12,7 @@ import {
   Palette,
   BarChart3,
 } from "lucide-react"
+import { LanguagesSection } from './language'
 
 const services = [
   {
@@ -89,6 +90,8 @@ export function ServicesSection() {
           </p>
         </motion.div>
 
+
+        <LanguagesSection/>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
             <motion.div
