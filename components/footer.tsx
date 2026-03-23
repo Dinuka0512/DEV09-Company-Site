@@ -54,7 +54,7 @@ export function Footer() {
               <span className="text-foreground">09</span>
             </motion.a>
             <p className="text-muted-foreground max-w-md leading-relaxed mb-6">
-              Building digital excellence since 2014. We transform ideas into
+              Building digital excellence since 2026. We transform ideas into
               powerful software solutions that drive business growth and innovation.
             </p>
             <div className="flex gap-4">
