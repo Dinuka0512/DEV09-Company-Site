@@ -157,7 +157,7 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background/95 backdrop-blur-md border-b border-border"
+            className="md:hidden bg-background/95 backdrop-blur-md border-b border-border max-h-[calc(100vh-80px)] overflow-y-auto"
             style={{ zIndex: 49 }}
           >
             <div className="container mx-auto px-6 py-4 flex flex-col gap-2">

@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 // ────────────────────────────────────────────────
 
@@ -99,6 +99,9 @@ const TeamCard = ({ member }: { member: (typeof team)[number] }) => {
 export function TeamSection() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [itemsPerView, setItemsPerView] = useState(1)
+  const [dragStart, setDragStart] = useState(0)
+  const [isDragging, setIsDragging] = useState(false)
+  const sliderRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const updateItemsPerView = () => {
@@ -129,6 +132,43 @@ export function TeamSection() {
 
   const isMobile = itemsPerView === 1
 
+  // Touch and drag handlers
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setDragStart(e.clientX)
+    setIsDragging(true)
+  }
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setDragStart(e.touches[0].clientX)
+    setIsDragging(true)
+  }
+
+  const handleMouseUp = (e: React.MouseEvent) => {
+    if (!isDragging) return
+    const dragEnd = e.clientX
+    handleDragEnd(dragEnd)
+  }
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!isDragging) return
+    const dragEnd = e.changedTouches[0].clientX
+    handleDragEnd(dragEnd)
+  }
+
+  const handleDragEnd = (dragEnd: number) => {
+    setIsDragging(false)
+    const diff = dragStart - dragEnd
+    const threshold = 50
+
+    if (Math.abs(diff) > threshold) {
+      if (diff > 0) {
+        nextSlide()
+      } else {
+        prevSlide()
+      }
+    }
+  }
+
   return (
     <section id="team" className="py-16 sm:py-20 bg-secondary/20 relative overflow-hidden">
       {/* Optional decorative lines */}
@@ -153,31 +193,37 @@ export function TeamSection() {
 
         {/* Carousel */}
         <div className="relative">
-          {/* Arrows – hidden on mobile */}
-          {!isMobile && (
-            <>
-              <button
-                onClick={prevSlide}
-                disabled={currentIndex === 0}
-                className="absolute -left-2 sm:-left-4 lg:-left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-background/80 backdrop-blur border border-border flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground disabled:opacity-40 disabled:hover:bg-background/80 transition-all shadow-md"
-                aria-label="Previous slide"
-              >
-                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-              </button>
+          {/* Arrows – visible on all devices */}
+          <>
+            <button
+              onClick={prevSlide}
+              disabled={currentIndex === 0}
+              className="absolute -left-1 sm:-left-4 lg:-left-6 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-background/80 backdrop-blur border border-border flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground disabled:opacity-40 disabled:hover:bg-background/80 transition-all shadow-md"
+              aria-label="Previous slide"
+            >
+              <ChevronLeft className="w-4 h-4 sm:w-6 sm:h-6" />
+            </button>
 
-              <button
-                onClick={nextSlide}
-                disabled={currentIndex === maxIndex}
-                className="absolute -right-2 sm:-right-4 lg:-right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-background/80 backdrop-blur border border-border flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground disabled:opacity-40 disabled:hover:bg-background/80 transition-all shadow-md"
-                aria-label="Next slide"
-              >
-                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
-              </button>
-            </>
-          )}
+            <button
+              onClick={nextSlide}
+              disabled={currentIndex === maxIndex}
+              className="absolute -right-1 sm:-right-4 lg:-right-6 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-background/80 backdrop-blur border border-border flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground disabled:opacity-40 disabled:hover:bg-background/80 transition-all shadow-md"
+              aria-label="Next slide"
+            >
+              <ChevronRight className="w-4 h-4 sm:w-6 sm:h-6" />
+            </button>
+          </>
 
           {/* Slider content */}
-          <div className="overflow-hidden">
+          <div 
+            className="overflow-hidden cursor-grab active:cursor-grabbing"
+            ref={sliderRef}
+            onMouseDown={handleMouseDown}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={() => setIsDragging(false)}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
             <motion.div
               className="flex"
               animate={{ x: `-${currentIndex * 100}%` }}

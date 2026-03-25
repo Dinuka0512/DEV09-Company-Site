@@ -127,9 +127,6 @@ export function Footer() {
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} DEV09. All rights reserved.
           </p>
-          <p className="text-sm text-muted-foreground">
-            Crafted with passion in San Francisco
-          </p>
         </div>
       </div>
     </footer>
